@@ -1,0 +1,84 @@
+{
+    "forEach": "entities",
+    "filename": "src/main/java/{{pathCase $.group}}/{{camelCase $.name}}/service/{{pascalCase name}}CRUDService.java",
+    "formatUsing": "java"
+}
+---
+package {{dotCase $.group}}.{{camelCase $.name}}.service;
+
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.New{{pascalCase name}}Dto;
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.{{pascalCase name}}Dto;
+import java.util.List;
+
+/**
+ * Provides CRUD (Create-Read-Update-Delete) operations for {{capitalCase name}} entities.
+ */
+public interface {{pascalCase name}}CRUDService {
+    
+    /**
+     * Lists all {{capitalCase name}} entities.
+     * 
+     * @return A list of all {{capitalCase name}} entities.
+     */
+    List<{{pascalCase name}}Dto> listAll();
+
+    /**
+     * Retrieves a single {{capitalCase name}} entity by its unique identifier.
+     * 
+     * @param id The unique identifier for the {{capitalCase name}} entity.
+     * @return The {{capitalCase name}} entity with the given unique identifier, or null if none exists.
+     */
+    {{pascalCase name}}Dto getById(String id);
+
+    /**
+     * Creates a new {{capitalCase name}} entity.
+     * 
+     * @param newDto The data for the new {{capitalCase name}} entity.
+     * @return The newly created {{capitalCase name}} entity.
+     */
+    {{pascalCase name}}Dto create(New{{pascalCase name}}Dto newDto);
+
+    {{#each attributes}}
+    /**
+     * Updates the {{camelCase name}} attribute of a {{capitalCase name}} entity.
+     * 
+     * @param id The unique identifier for the {{capitalCase name}} entity.
+     * @param newValue The new value for the {{camelCase name}} attribute.
+     * @return The updated {{capitalCase name}} entity.
+     */
+    void update{{pascalCase name}}(String id, {{type.java}} newValue);
+
+    /**
+     * Clears the {{camelCase name}} attribute of a {{capitalCase name}} entity, setting it to null.
+     * 
+     * @param id The unique identifier for the {{capitalCase name}} entity.
+     */
+    void clear{{pascalCase name}}(String id);
+    {{/each}}
+
+    {{#each associations}}
+    /**
+     * Updates the {{camelCase name}} association of a {{capitalCase name}} entity.
+     * 
+     * @param id The unique identifier for the {{capitalCase name}} entity.
+     * @param newId The unique identifier for the new {{camelCase name}} entity.
+     * @return The updated {{capitalCase name}} entity.
+     */
+    void update{{pascalCase name}}(String id, String newId);
+
+    /**
+     * Clears the {{camelCase name}} association of a {{capitalCase name}} entity, setting it to null.
+     * 
+     * @param id The unique identifier for the {{capitalCase name}} entity.
+     */
+    void clear{{pascalCase name}}(String id);
+    {{/each}}
+
+    /**
+     * Deletes a {{capitalCase name}} entity by its unique identifier.
+     * 
+     * @param id The unique identifier for the {{capitalCase name}} entity.
+     */
+    void deleteById(String id);
+
+}

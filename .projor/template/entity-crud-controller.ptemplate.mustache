@@ -1,0 +1,80 @@
+{
+    "forEach": "entities",
+    "filename": "src/main/java/{{pathCase $.group}}/{{camelCase $.name}}/controller/{{pascalCase name}}CRUDController.java",
+    "formatUsing": "java"
+}
+---
+package {{dotCase $.group}}.{{camelCase $.name}}.controller;
+
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.New{{pascalCase name}}Dto;
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.{{pascalCase name}}Dto;
+import {{dotCase $.group}}.{{camelCase $.name}}.service.{{pascalCase name}}CRUDService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/{{kebabCase $.name}}/v1/{{kebabCase name}}")
+public class {{pascalCase name}}CRUDController {
+
+    @Autowired
+    private {{pascalCase name}}CRUDService service;
+
+    @GetMapping
+    public List<{{pascalCase name}}Dto> listAll() {
+        return service.listAll();
+    }
+
+    @GetMapping("{id}")
+    public {{pascalCase name}}Dto getById(@PathVariable String id) {
+        return service.getById(id);
+    }
+
+    @PostMapping
+    public {{pascalCase name}}Dto create(@RequestBody New{{pascalCase name}}Dto newDto) {
+        return service.create(newDto);
+    }
+
+    {{#each attributes}}
+    @PostMapping(value = "{id}/{{kebabCase name}}", consumes = "application/json", produces = "application/json")
+    public void update{{pascalCase name}}(
+        @PathVariable String id, 
+        @RequestBody Object value
+    ) {
+        final {{type.java}} {{name}} = ({{type.java}}) value;
+        service.update{{pascalCase name}}(id, {{name}});
+    }
+
+    @DeleteMapping("{id}/{{kebabCase name}}")
+    public void clear{{pascalCase name}}(
+        @PathVariable String id, 
+        @RequestBody {{type.java}} {{name}}
+    ) {
+        service.clear{{pascalCase name}}(id);
+    }
+    {{/each}}
+
+    {{#each associations}}
+    @PostMapping(value = "{id}/{{kebabCase name}}", consumes = "application/json", produces = "application/json")
+    public void update{{pascalCase name}}(
+        @PathVariable String id, 
+        @RequestBody Object value
+    ) {
+        final String {{name}}Id = (String) value;
+        service.update{{pascalCase name}}(id, {{name}}Id);
+    }
+
+    @DeleteMapping("{id}/{{kebabCase name}}")
+    public void clear{{pascalCase name}}(
+        @PathVariable String id
+    ) {
+        service.clear{{pascalCase name}}(id);
+    }
+    {{/each}}
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable String id) {
+        service.deleteById(id);
+    }
+
+}

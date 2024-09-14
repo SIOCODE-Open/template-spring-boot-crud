@@ -1,0 +1,17 @@
+{
+    "map": {},
+    "filename": "src/main/resources/application.properties"
+}
+---
+# This is the app configuration file
+# Environment variable overrides are supported, always under the `{{constantCase $.name}}_` prefix
+spring.application.name={{$.name}}
+
+# DB configuration parameters
+spring.datasource.url=${ {{constantCase $.name}}_DB_URL:jdbc:h2:mem:{{snakeCase $.name}}_db}
+spring.datasource.username=${ {{constantCase $.name}}_DB_USERNAME:{{snakeCase $.name}}_user}
+spring.datasource.password=${ {{constantCase $.name}}_DB_PASSWORD:{{snakeCase $.name}}_password}
+spring.datasource.driver-class-name=${ {{constantCase $.name}}_DB_DRIVER:org.h2.Driver}
+spring.jpa.database-platform=${ {{constantCase $.name}}_DB_PLATFORM:org.hibernate.dialect.H2Dialect}
+# Update schema on startup by default
+spring.jpa.hibernate.ddl-auto=${ {{constantCase $.name}}_DB_DDL_AUTO:update}

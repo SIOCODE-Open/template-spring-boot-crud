@@ -1,0 +1,19 @@
+{
+    "map": {},
+    "filename": "src/main/java/{{pathCase $.group}}/{{camelCase $.name}}/{{pascalCase $.name}}Application.java",
+    "formatUsing": "java"
+}
+---
+package {{dotCase $.group}}.{{camelCase $.name}};
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class {{pascalCase $.name}}Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run({{pascalCase $.name}}Application.class, args);
+	}
+
+}

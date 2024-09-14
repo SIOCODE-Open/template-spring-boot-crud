@@ -1,0 +1,20 @@
+{
+    "forEach": "entities",
+    "filename": "src/main/java/{{pathCase $.group}}/{{camelCase $.name}}/repository/{{pascalCase name}}Repository.java",
+    "formatUsing": "java"
+}
+---
+package {{dotCase $.group}}.{{camelCase $.name}}.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
+import {{dotCase $.group}}.{{camelCase $.name}}.entity.{{pascalCase name}}Entity;
+
+/**
+ * {{{description}}}
+ */
+@Repository
+public interface {{pascalCase name}}Repository extends JpaRepository<{{pascalCase name}}Entity, String>, JpaSpecificationExecutor<{{pascalCase name}}Entity> {
+    
+}

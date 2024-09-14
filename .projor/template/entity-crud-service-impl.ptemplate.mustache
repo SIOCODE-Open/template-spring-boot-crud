@@ -1,0 +1,113 @@
+{
+    "forEach": "entities",
+    "filename": "src/main/java/{{pathCase $.group}}/{{camelCase $.name}}/service/{{pascalCase name}}CRUDServiceImpl.java",
+    "formatUsing": "java"
+}
+---
+package {{dotCase $.group}}.{{camelCase $.name}}.service;
+
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.New{{pascalCase name}}Dto;
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.{{pascalCase name}}Dto;
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.convert.{{pascalCase name}}EntityToDto;
+import {{dotCase $.group}}.{{camelCase $.name}}.repository.*;
+import {{dotCase $.group}}.{{camelCase $.name}}.entity.*;
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
+
+/**
+ * Implementation of the CRUD service for {{capitalCase name}} entities.
+ */
+@Service
+@Transactional
+public class {{pascalCase name}}CRUDServiceImpl implements {{pascalCase name}}CRUDService {
+
+    @Autowired
+    private {{pascalCase name}}Repository repository;
+
+    {{#each associations}}
+    @Autowired
+    private {{pascalCase type.name}}Repository {{camelCase name}}Repository;
+    {{/each}}
+
+    private final {{pascalCase name}}EntityToDto entityToDto = new {{pascalCase name}}EntityToDto();
+    
+    @Override
+    public List<{{pascalCase name}}Dto> listAll() {
+        return repository.findAll().stream()
+            .map(entityToDto::convert)
+            .collect(Collectors.toList());
+    }
+
+    @Override
+    public {{pascalCase name}}Dto getById(String id) {
+        return repository.findById(id)
+            .map(entityToDto::convert)
+            .orElse(null);
+    }
+
+    @Override
+    public {{pascalCase name}}Dto create(New{{pascalCase name}}Dto newDto) {
+        final {{pascalCase name}}Entity entity = new {{pascalCase name}}Entity();
+        entity.setId(UUID.randomUUID().toString());
+        {{#each attributes}}
+        entity.set{{pascalCase name}}(newDto.get{{pascalCase name}}());
+        {{/each}}
+        {{#each associations}}
+        if (newDto.get{{pascalCase name}}Id() != null) {
+            entity.set{{pascalCase name}}({{camelCase name}}Repository.findById(newDto.get{{pascalCase name}}Id()).orElse(null));
+        } else {
+            entity.set{{pascalCase name}}(null);
+        }
+        {{/each}}
+        return entityToDto.convert(repository.save(entity));
+    }
+
+    {{#each attributes}}
+    
+    @Override
+    public void update{{pascalCase name}}(String id, {{type.java}} newValue) {
+        final {{pascalCase ../name}}Entity entity = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No {{capitalCase name}} entity with id " + id));
+        entity.set{{pascalCase name}}(newValue);
+        repository.save(entity);
+    }
+
+    @Override
+    public void clear{{pascalCase name}}(String id) {
+        final {{pascalCase ../name}}Entity entity = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No {{capitalCase name}} entity with id " + id));
+        entity.set{{pascalCase name}}(null);
+        repository.save(entity);
+    }
+    {{/each}}
+
+    {{#each associations}}
+    
+    @Override
+    public void update{{pascalCase name}}(String id, String newId) {
+        final {{pascalCase ../name}}Entity entity = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No {{capitalCase name}} entity with id " + id));
+        if (newId != null) {
+            entity.set{{pascalCase name}}({{camelCase name}}Repository.findById(newId).orElse(null));
+        } else {
+            entity.set{{pascalCase name}}(null);
+        }
+        repository.save(entity);
+    }
+
+    @Override
+    public void clear{{pascalCase name}}(String id) {
+        final {{pascalCase ../name}}Entity entity = repository.findById(id).orElseThrow(() -> new IllegalArgumentException("No {{capitalCase name}} entity with id " + id));
+        entity.set{{pascalCase name}}(null);
+        repository.save(entity);
+    }
+    {{/each}}
+
+    @Override
+    public void deleteById(String id) {
+        repository.deleteById(id);
+    }
+
+}

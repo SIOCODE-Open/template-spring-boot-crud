@@ -1,0 +1,32 @@
+{
+    "forEach": "entities",
+    "filename": "src/main/java/{{pathCase $.group}}/{{camelCase $.name}}/dto/{{pascalCase name}}Dto.java",
+    "formatUsing": "java"
+}
+---
+package {{dotCase $.group}}.{{camelCase $.name}}.dto;
+
+import lombok.*;
+
+/**
+ * {{{description}}}
+ */
+@Data
+public class {{pascalCase name}}Dto {
+    /**
+     * The unique identifier for the {{capitalCase name}}
+     */
+    private String id;
+{{#each attributes}}
+    /**
+     * {{{description}}}
+     */
+    private {{type.java}} {{camelCase name}};
+{{/each}}
+{{#each associations}}
+    /**
+     * {{{description}}}
+     */
+    private String {{camelCase name}}Id;
+{{/each}}
+}

@@ -1,0 +1,39 @@
+{
+    "forEach": "entities",
+    "filename": "src/main/java/{{pathCase $.group}}/{{camelCase $.name}}/dto/convert/{{pascalCase name}}EntityToDto.java",
+    "formatUsing": "java"
+}
+---
+package {{dotCase $.group}}.{{camelCase $.name}}.dto.convert;
+
+import {{dotCase $.group}}.{{camelCase $.name}}.dto.{{pascalCase name}}Dto;
+import {{dotCase $.group}}.{{camelCase $.name}}.entity.{{pascalCase name}}Entity;
+
+/**
+ * Converts a {{pascalCase name}}Entity to a {{pascalCase name}}Dto
+ */
+public class {{pascalCase name}}EntityToDto {
+
+    /**
+     * Converts a {{pascalCase name}}Entity to a {{pascalCase name}}Dto
+     * 
+     * @param entity the entity to convert
+     * @return the converted dto
+     */
+    public {{pascalCase name}}Dto convert({{pascalCase name}}Entity entity) {
+        {{pascalCase name}}Dto dto = new {{pascalCase name}}Dto();
+        dto.setId(entity.getId());
+{{#each attributes}}
+        dto.set{{pascalCase name}}(entity.get{{pascalCase name}}());
+{{/each}}
+{{#each associations}}
+        if (entity.get{{pascalCase name}}() != null) {
+            dto.set{{pascalCase name}}Id(entity.get{{pascalCase name}}().getId());
+        } else {
+            dto.set{{pascalCase name}}Id(null);
+        }
+{{/each}}
+        return dto;
+    }
+
+}
