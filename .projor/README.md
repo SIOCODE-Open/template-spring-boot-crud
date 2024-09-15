@@ -44,8 +44,8 @@ gradlew bootRun
 
 ## How it works
 
-* This template uses the [`entities.plang.js`](language/entities.plang.js) script to define a _[domain specific language](https://docs.projor.io/overview/languages)_ for defining entities.
-* We have defined the [Entity schema](schema/Entity.pschema.yaml), and the [`.entities`](.entities) file is parsed by the language into this schema. This creates a [data collection](https://docs.projor.io/overview/data-collections) of entities, with ID `entities`.
+* This template uses the [`entities.plang.js`](language/entities.plang.js) script to define a _[domain specific language](https://docs.projor.io/overview/languages.html)_ for defining entities.
+* We have defined the [Entity schema](schema/Entity.pschema.yaml), and the [`.entities`](.entities) file is parsed by the language into this schema. This creates a [data collection](https://docs.projor.io/overview/data-collections.html) of entities, with ID `entities`.
 * We created a couple of [templates](template/) to generate the _JPA entity classes_, _repository interfaces_, _CRUD services_, _controllers_, _build scripts_ and all other necessary _boilerplate_ code.
 
 ## License
