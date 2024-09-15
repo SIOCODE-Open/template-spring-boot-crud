@@ -40,7 +40,7 @@ gradlew bootRun
 ```
 
 * After that, you can access the API at `http://localhost:8080`. See the [README](../README.md) for a reference to the API.
-* Whenever you want to _modify how the code is generataed_, you should edit the templates in [template](templates/), and run `projor generate` again.
+* Whenever you want to _modify how the code is generataed_, you should edit the templates in [template](template/), and run `projor generate` again.
 
 ## How it works
 
