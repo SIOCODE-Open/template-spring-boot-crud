@@ -2,6 +2,8 @@
 
 This is a template for a [Spring Boot](https://spring.io/projects/spring-boot)-based CRUD service. You can customize this template by editing the [`.projor/.entities` file](.projor/.entities), and using [ProJor](https://projor.io) to generate the code.
 
+[Learn more about this template in the `.projor/README.md`](.projor/README.md).
+
 _You can edit this description in [`.projor/project.pglobal.yaml`](.projor/project.pglobal.yaml)_
 
 ## Configuration
