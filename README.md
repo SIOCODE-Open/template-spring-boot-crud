@@ -186,6 +186,7 @@ _204 No Content_
   ```
 </details>
 
+
 ### `POST /backend/v1/product/{id}/name`
 
 Updates the `name` attribute of a Product entity.
@@ -255,6 +256,8 @@ _204 No Content_
   curl -X DELETE http://localhost:8080/backend/v1/product/{id}/name
   ```
 </details>
+
+
 ### `POST /backend/v1/product/{id}/description`
 
 Updates the `description` attribute of a Product entity.
@@ -324,6 +327,8 @@ _204 No Content_
   curl -X DELETE http://localhost:8080/backend/v1/product/{id}/description
   ```
 </details>
+
+
 
 ### `POST /backend/v1/product/{id}/manufacturer`
 
@@ -554,6 +559,7 @@ _204 No Content_
   ```
 </details>
 
+
 ### `POST /backend/v1/manufacturer/{id}/name`
 
 Updates the `name` attribute of a Manufacturer entity.
@@ -623,6 +629,8 @@ _204 No Content_
   curl -X DELETE http://localhost:8080/backend/v1/manufacturer/{id}/name
   ```
 </details>
+
+
 ### `POST /backend/v1/manufacturer/{id}/description`
 
 Updates the `description` attribute of a Manufacturer entity.
@@ -692,6 +700,8 @@ _204 No Content_
   curl -X DELETE http://localhost:8080/backend/v1/manufacturer/{id}/description
   ```
 </details>
+
+
 ### `POST /backend/v1/manufacturer/{id}/website`
 
 Updates the `website` attribute of a Manufacturer entity.
@@ -761,6 +771,7 @@ _204 No Content_
   curl -X DELETE http://localhost:8080/backend/v1/manufacturer/{id}/website
   ```
 </details>
+
 
 
 

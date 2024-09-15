@@ -214,6 +214,7 @@ _204 No Content_
 </details>
 
 {{#each attributes}}
+
 ### `POST /{{kebabCase ../../$.name}}/v1/{{kebabCase ../name}}/{id}/{{kebabCase name}}`
 
 Updates the `{{camelCase name}}` attribute of a {{capitalCase ../name}} entity.
@@ -283,9 +284,11 @@ _204 No Content_
   curl -X DELETE http://localhost:8080/{{kebabCase ../../$.name}}/v1/{{kebabCase ../name}}/{id}/{{kebabCase name}}
   ```
 </details>
+
 {{/each}}
 
 {{#each associations}}
+
 ### `POST /{{kebabCase ../../$.name}}/v1/{{kebabCase ../name}}/{id}/{{kebabCase name}}`
 
 Updates the `{{camelCase name}}` association of a {{capitalCase ../name}} entity.
