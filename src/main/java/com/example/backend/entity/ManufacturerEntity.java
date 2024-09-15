@@ -7,7 +7,7 @@ import lombok.*;
  * A manufacturer of products
  */
 @Entity
-@Table(name = "manufacturer")
+@Table(name = "\"manufacturer\"")
 @Data
 public class ManufacturerEntity {
     /**
@@ -20,16 +20,16 @@ public class ManufacturerEntity {
     /**
      * The name of the manufacturer
      */
-    @Column(name = "name", nullable = true, insertable = true, updatable = true)
+    @Column(name = "\"name\"", nullable = true, insertable = true, updatable = true)
     private java.lang.String name;
     /**
      * The description of the manufacturer, supports Markdown
      */
-    @Column(name = "description", nullable = true, insertable = true, updatable = true)
+    @Column(name = "\"description\"", nullable = true, insertable = true, updatable = true)
     private java.lang.String description;
     /**
      * The URL of the manufacturer's website
      */
-    @Column(name = "website", nullable = true, insertable = true, updatable = true)
+    @Column(name = "\"website\"", nullable = true, insertable = true, updatable = true)
     private java.lang.String website;
 }

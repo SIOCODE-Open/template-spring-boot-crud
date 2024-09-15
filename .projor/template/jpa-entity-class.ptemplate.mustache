@@ -12,7 +12,7 @@ import lombok.*;
  * {{{description}}}
  */
 @Entity
-@Table(name = "{{snakeCase name}}")
+@Table(name = "\"{{snakeCase name}}\"")
 @Data
 public class {{pascalCase name}}Entity {
     /**
@@ -26,7 +26,7 @@ public class {{pascalCase name}}Entity {
     /**
      * {{{description}}}
      */
-    @Column(name = "{{snakeCase name}}", nullable = true, insertable = true, updatable = true)
+    @Column(name = "\"{{snakeCase name}}\"", nullable = true, insertable = true, updatable = true)
     private {{type.java}} {{camelCase name}};
 {{/each}}
 {{#each associations}}

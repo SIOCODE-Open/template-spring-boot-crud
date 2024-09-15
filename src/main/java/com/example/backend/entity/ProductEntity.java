@@ -7,7 +7,7 @@ import lombok.*;
  * A product in the system
  */
 @Entity
-@Table(name = "product")
+@Table(name = "\"product\"")
 @Data
 public class ProductEntity {
     /**
@@ -20,12 +20,12 @@ public class ProductEntity {
     /**
      * The name of the product
      */
-    @Column(name = "name", nullable = true, insertable = true, updatable = true)
+    @Column(name = "\"name\"", nullable = true, insertable = true, updatable = true)
     private java.lang.String name;
     /**
      * The description of the product, supports Markdown
      */
-    @Column(name = "description", nullable = true, insertable = true, updatable = true)
+    @Column(name = "\"description\"", nullable = true, insertable = true, updatable = true)
     private java.lang.String description;
     /**
      * The manufacturer of the product
