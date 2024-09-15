@@ -766,4 +766,4 @@ _204 No Content_
 
 This template is licensed under the [MIT License](LICENSE.md).
 
-[ProJor] is licensed under either the [ProJor Free License](https://license.projor.io) or the [ProJor Commercial License](https://license.projor.io).
+[ProJor](https://projor.io) is licensed under either the [ProJor Free License](https://license.projor.io) or the [ProJor Commercial License](https://license.projor.io).
