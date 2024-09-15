@@ -19,10 +19,22 @@ You can change the configuration of the generated backend with the following env
 
 ## Running
 
-You can build and run the generated service with the following commands:
+You can also build & run the generated service with Docker Compose (requires [Docker](https://www.docker.com/get-started)):
+
+```bash
+docker compose up --build
+```
+
+You can build and run the generated service with the following commands. This requires [OpenJDK 17](https://adoptopenjdk.net).
 
 * Windows: `gradlew bootRun`
 * macOS/Linux: `./gradlew bootRun`
+
+You can build the Docker container of the generated service with the following command (requires [Docker](https://www.docker.com/get-started)):
+
+```bash
+docker build -t com-example/backend:latest .
+```
 
 ## API
 
