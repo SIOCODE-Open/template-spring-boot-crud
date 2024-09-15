@@ -1,0 +1,32 @@
+version: '3.8'
+services:
+    backend:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/backend
+            - SPRING_DATASOURCE_USERNAME=backend
+            - SPRING_DATASOURCE_PASSWORD=backend
+            - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+            - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+        depends_on:
+            - db
+        networks:
+            - backend-network
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_DB=backend
+            - POSTGRES_USER=backend
+            - POSTGRES_PASSWORD=backend
+        networks:
+            - backend-network
+        volumes:
+            - backend-data:/var/lib/postgresql/data
+networks:
+    backend-network: {}
+volumes:
+    backend-data: {}

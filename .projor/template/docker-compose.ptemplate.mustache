@@ -1,0 +1,37 @@
+{
+    "map": {},
+    "filename": "docker-compose.yaml"
+}
+---
+version: '3.8'
+services:
+    {{kebabCase $.name}}:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        environment:
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/{{snakeCase $.name}}
+            - SPRING_DATASOURCE_USERNAME={{snakeCase $.name}}
+            - SPRING_DATASOURCE_PASSWORD={{snakeCase $.name}}
+            - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.postgresql.Driver
+            - SPRING_JPA_DATABASE_PLATFORM=org.hibernate.dialect.PostgreSQLDialect
+        depends_on:
+            - db
+        networks:
+            - {{kebabCase $.name}}-network
+    db:
+        image: postgres
+        environment:
+            - POSTGRES_DB={{snakeCase $.name}}
+            - POSTGRES_USER={{snakeCase $.name}}
+            - POSTGRES_PASSWORD={{snakeCase $.name}}
+        networks:
+            - {{kebabCase $.name}}-network
+        volumes:
+            - {{snakeCase $.name}}-data:/var/lib/postgresql/data
+networks:
+    {{kebabCase $.name}}-network: {}
+volumes:
+    {{snakeCase $.name}}-data: {}

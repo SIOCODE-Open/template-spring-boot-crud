@@ -10,7 +10,7 @@ _You can edit this description in [`.projor/project.pglobal.yaml`](.projor/proje
 
 You can change the configuration of the generated backend with the following environment variables:
 
-* `BACKEND_JDBC_URL`: The JDBC URL of the database. Defaults to `jdbc:h2:mem:backend_db`.
+* `BACKEND_DB_URL`: The JDBC URL of the database. Defaults to `jdbc:h2:mem:backend_db`.
 * `BACKEND_DB_USERNAME`: The username to connect to the database. Defaults to `backend_user`.
 * `BACKEND_DB_PASSWORD`: The password to connect to the database. Defaults to `backend_password`.
 * `BACKEND_DB_DRIVER`: The JDBC driver class name. Defaults to `org.h2.Driver`.
