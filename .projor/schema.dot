@@ -1,0 +1,10 @@
+digraph G {
+"Association" [label="Association"];
+"Attribute" [label="Attribute"];
+"BasicType" [label="Basic Type"];
+"Entity" [label="Entity"];
+"Association" -> "Entity" [label="type" arrowhead=vee];
+"Attribute" -> "BasicType" [label="type" arrowhead=vee];
+"Entity" -> "Attribute" [label="attributes" arrowhead=diamond];
+"Entity" -> "Association" [label="associations" arrowhead=diamond];
+}

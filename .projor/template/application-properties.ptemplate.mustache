@@ -15,3 +15,5 @@ spring.datasource.driver-class-name=${ {{constantCase $.name}}_DB_DRIVER:org.h2.
 spring.jpa.database-platform=${ {{constantCase $.name}}_DB_PLATFORM:org.hibernate.dialect.H2Dialect}
 # Update schema on startup by default
 spring.jpa.hibernate.ddl-auto=${ {{constantCase $.name}}_DB_DDL_AUTO:update}
+# Option to disable the custom CORS filter, which should not be used in production
+{{kebabCase $.name}}.cors.enabled=${ {{constantCase $.name}}_CORS_ENABLED:true}
